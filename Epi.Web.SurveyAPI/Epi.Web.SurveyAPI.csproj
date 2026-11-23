@@ -367,7 +367,10 @@
     <Compile Include="Web.Common\Message\SurveyControlsResponse.cs" />
     <Compile Include="Web.Common\Message\SurveyInfoRequest.cs" />
     <Compile Include="Web.Common\ObjectMapping\Mapper.cs" />
+    <Compile Include="Web.Common\Security\AdminKey.cs" />
     <Compile Include="Web.Common\Security\Cryptography.cs" />
+    <Compile Include="Web.Common\Security\KeyMaterial.cs" />
+    <Compile Include="Web.Common\Security\KnownPublicValues.cs" />
     <Compile Include="Web.Common\Xml\SurveyResponseXML.cs" />
     <Compile Include="Web.Common\Xml\SurveyXml.cs" />
   </ItemGroup>

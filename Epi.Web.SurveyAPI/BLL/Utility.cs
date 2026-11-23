@@ -78,26 +78,8 @@ namespace Epi.Web.SurveyAPI.BLL
         //Validate Admin
         public static bool ValidateAdmin(string AdminKeyToValidate)
         {
-            string AdminKey = ConfigurationManager.AppSettings["AdminKey"];
-            string EncryptedAdminKey = Cryptography.Decrypt(AdminKey);
-
-            bool ISValidUser = false;
-
-            if (!string.IsNullOrEmpty(EncryptedAdminKey) && !string.IsNullOrEmpty(AdminKeyToValidate))
-            {
-
-                if (EncryptedAdminKey == AdminKeyToValidate)
-                {
-                    ISValidUser = true;
-
-
-                }
-                else
-                {
-                    ISValidUser = false;
-                }
-            }
-            return ISValidUser;
+            Guid? configuredKey = AdminKey.Read(ConfigurationManager.AppSettings, Cryptography.ConfiguredKeyMaterial);
+            return AdminKey.Matches(AdminKeyToValidate, configuredKey);
         }
 
         

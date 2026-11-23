@@ -16,6 +16,7 @@ namespace Epi.Web.SurveyAPI
       
         protected void Application_Start()
         {
+            Epi.Web.SurveyAPI.Web.Common.Security.Cryptography.ValidateConfiguration();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
