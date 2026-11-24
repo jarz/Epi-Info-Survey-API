@@ -398,22 +398,15 @@ namespace Epi.Web.SurveyAPI.Repository
         {           
             Interfaces.DataInterfaces.ISurveyInfoDao surveyInfoDao = new EF.EntitySurveyInfoDao();
             BLL.SurveyInfo SurveyInfo = new BLL.SurveyInfo(surveyInfoDao);
-            try
+            var surveyInfo = SurveyInfo.GetSurveyInfoById(SurveyId);
+            if (surveyInfo != null)
             {
-                var surveyInfo = SurveyInfo.GetSurveyInfoById(SurveyId);
-                if (surveyInfo != null)
-                {
-                    Interfaces.DataInterfaces.IOrganizationDao OrgDao = new EF.EntityOrganizationDao();
-                    BLL.Organization Organization = new BLL.Organization(OrgDao);
-                    var OrgBo = Organization.GetOrganizationById(surveyInfo.OrganizationId);
-                    surveyInfo.OrganizationKey = new Guid(OrgBo.OrganizationKey);
-                }
-                return surveyInfo;
+                Interfaces.DataInterfaces.IOrganizationDao OrgDao = new EF.EntityOrganizationDao();
+                BLL.Organization Organization = new BLL.Organization(OrgDao);
+                var OrgBo = Organization.GetOrganizationById(surveyInfo.OrganizationId);
+                surveyInfo.OrganizationKey = new Guid(OrgBo.OrganizationKey);
             }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            return surveyInfo;
            
         }
 

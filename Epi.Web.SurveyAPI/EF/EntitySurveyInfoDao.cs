@@ -37,7 +37,11 @@ namespace Epi.Web.SurveyAPI.EF
 
                         using (var Context = DataObjectFactory.CreateContext())
                         {
-                            result.Add(Mapper.Map(Context.SurveyMetaDatas.FirstOrDefault(x => x.SurveyId == Id)));
+                            var survey = Context.SurveyMetaDatas.FirstOrDefault(x => x.SurveyId == Id);
+                            if (survey != null)
+                            {
+                                result.Add(Mapper.Map(survey));
+                            }
                         }
                     }
                 }
