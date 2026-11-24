@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -25,17 +26,19 @@ namespace ConsoleApplication1
         [STAThread]
         public static void Main(string[] args)
         {
-            Console.WriteLine("Please enter end point address");
+            Console.WriteLine("Please enter an HTTPS endpoint address");
             while (string.IsNullOrEmpty(_strBaseaddress))
             {
-                try
+                Uri endpoint;
+                if (Uri.TryCreate(Console.ReadLine(), UriKind.Absolute, out endpoint) &&
+                    string.Equals(endpoint.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase))
                 {
-                    _client.BaseAddress = new Uri(Console.ReadLine());
+                    _client.BaseAddress = endpoint;
                     _strBaseaddress = _client.BaseAddress.ToString();
                 }
-                catch (Exception)
+                else
                 {
-                    Console.WriteLine("Please Enter a valid endpoint");
+                    Console.WriteLine("Please enter a valid HTTPS endpoint");
                 }
             }
             Console.WriteLine("Please select file");
@@ -79,7 +82,14 @@ namespace ConsoleApplication1
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(
                 new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            _client.DefaultRequestHeaders.Add("SurveyId", _strSurveyId);           
+            string sharedKey = ConfigurationManager.AppSettings["SurveyApiSharedKey"];
+            if (string.IsNullOrWhiteSpace(sharedKey))
+            {
+                Console.WriteLine("AppSetting 'SurveyApiSharedKey' must be configured.");
+                return;
+            }
+            _client.DefaultRequestHeaders.Add("SurveyId", _strSurveyId);
+            _client.DefaultRequestHeaders.Add("X-Epi-Info-API-Key", sharedKey);
             try
             {
                 if (_strHttpRequest.ToLower() == "post")

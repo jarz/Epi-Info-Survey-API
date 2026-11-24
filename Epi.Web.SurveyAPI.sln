@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epi.Web.SurveyAPI", "Epi.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{B6431658-E6F8-44D6-B8A9-3CF9B88DB059}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epi.Web.SurveyAPI.Tests", "Epi.Web.SurveyAPI.Tests\Epi.Web.SurveyAPI.Tests.csproj", "{326A6AC7-C20C-4F6F-A197-A68868D07C86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B6431658-E6F8-44D6-B8A9-3CF9B88DB059}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6431658-E6F8-44D6-B8A9-3CF9B88DB059}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6431658-E6F8-44D6-B8A9-3CF9B88DB059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{326A6AC7-C20C-4F6F-A197-A68868D07C86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{326A6AC7-C20C-4F6F-A197-A68868D07C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{326A6AC7-C20C-4F6F-A197-A68868D07C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{326A6AC7-C20C-4F6F-A197-A68868D07C86}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,2 +1,5 @@
 **/obj/
 **/bin/
+/packages/NUnit.5.0.0/
+/packages/NUnit3TestAdapter.6.3.1/
+/packages/System.Threading.Tasks.Extensions.4.6.3/
